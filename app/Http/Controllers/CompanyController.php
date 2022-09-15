@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateCompanyAction;
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $response = Company::with('team')->all();
+
+        return $this->okResponse("Company retrieved successfully", $response);
     }
 
     /**
@@ -33,9 +37,15 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        try {
+            $response = (new CreateCompanyAction())->execute($request);
+
+            return $this->createdResponse("Company created successfully", $response);
+        } catch (\Exception $e) {
+            return $this->errorResponse("unable to create company", $e->getMessage());
+        }
     }
 
     /**
