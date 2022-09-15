@@ -27,14 +27,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereDeletedAt($value)
  */
-class Company extends Model
+class Organization extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'organizations';
+
     protected $guarded = [];
 
-    public function team()
+    public function members()
     {
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Member::class);
     }
 }

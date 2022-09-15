@@ -33,16 +33,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserName($value)
  * @mixin \Eloquent
  */
-class Team extends Model
+class Member extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'teams';
+    protected $table = 'members';
 
     protected $guarded = [];
 
-    public function company()
+    public function organization()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Organization::class);
     }
 }
