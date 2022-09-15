@@ -10,7 +10,8 @@ use Illuminate\Http\Response;
 class GithubWebhookController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         $payload = WebhookLog::query()->find(1)->data->toArray();
         return json_decode(json_encode($payload), true);
     }

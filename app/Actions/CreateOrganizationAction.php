@@ -31,7 +31,6 @@ class CreateOrganizationAction
         $response = (new GithubApi())->getMembers($request->access_token, $request->organization_name);
 
         if ($response['status'] !== 200) {
-
             if (isset($response['error'])) {
                 $errorMessage = $response['error']['message'];
             }

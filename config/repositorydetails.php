@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'github' => [
         'base_url' => env('GITHUB_URL'),

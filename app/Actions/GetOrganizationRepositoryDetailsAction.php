@@ -10,9 +10,7 @@ class GetOrganizationRepositoryDetailsAction
     {
         $response = (new GithubApi())->getOrganization($token);
 
-
         if ($response['status'] !== 200) {
-
             if (isset($response['error'])) {
                 $errorMessage = $response['error']['message'];
             }
@@ -21,7 +19,6 @@ class GetOrganizationRepositoryDetailsAction
         }
 
         if (is_null($response['data'])) {
-
             \abort(400, 'you donnot belong to any organization.');
         }
 
