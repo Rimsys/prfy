@@ -26,9 +26,21 @@ class CreateCompanyAction
         return  $validateService;
     }
 
-    private function getCompanydetails($request)
+    private function getCompanyDetails($request)
     {
         $response = (new GithubApi())->getCompany($request->access_token);
+
+        if ($response === false) {
+
+            \abort(400, 'Bad credentials.');
+        }
+
+        return $response;
+    }
+
+    private function getCompanyMembers($request)
+    {
+        $response = (new GithubApi())->getMembers($request->access_token, $organization);
 
         if ($response === false) {
 
