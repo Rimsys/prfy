@@ -4,8 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeamsTable extends Migration
+class CreateMembersTable extends Migration
 {
+    /**
+     * The table name for this migration
+     *
+     * @var string $schemaTable
+     */
+    protected $schemaTable = 'members';
+
     /**
      * Run the migrations.
      *
@@ -13,12 +20,12 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
+            $table->string('name')->nullable();
             $table->string('user_name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('avatar_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -32,6 +39,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

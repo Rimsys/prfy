@@ -14,7 +14,7 @@ class GithubApi extends Service
         $response = $this->get('user', [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authentication' => 'Bearer ' . $token
+                'Authorization' => 'Bearer ' . $token
             ]
         ]);
         return $response;
@@ -25,7 +25,19 @@ class GithubApi extends Service
         $response = $this->get("orgs/{$organization}/members", [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authentication' => 'Bearer ' . $token
+                'Authorization' => 'Bearer ' . $token
+            ]
+        ]);
+
+        return $response;
+    }
+
+    public function getOrganization($token)
+    {
+        $response = $this->get('user/orgs', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $token
             ]
         ]);
 

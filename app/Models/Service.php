@@ -28,5 +28,7 @@ class Service extends Model
 
     use HasFactory;
 
+    protected $table = 'services';
+
     protected $guarded = [];
 }

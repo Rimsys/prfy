@@ -9,6 +9,6 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return $this->okResponse(Service::get());
+        return $this->okResponse('Services retrieved successfully', Service::all());
     }
 }

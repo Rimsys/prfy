@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GithubWebhookController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\OrganizationRepositoryDetailsController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +25,7 @@ Route::get('/example', [Controller::class, 'example'])->name('example route');
 Route::get('/error', [Controller::class, 'error'])->name('error route');
 Route::get('webhook', [GithubWebhookController::class, 'index']);
 Route::post('webhook', [GithubWebhookController::class, 'store']);
+
+Route::post('register',  [OrganizationController::class, 'store'])->name('register.store')->middleware('verify.services');
+Route::post('repositorydetails', [OrganizationRepositoryDetailsController::class, 'getOrganizationMembers'])->name('repositorydetails');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');

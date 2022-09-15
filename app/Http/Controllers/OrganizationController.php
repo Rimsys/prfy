@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateCompanyAction;
-use App\Http\Requests\CompanyRequest;
-use App\Models\Company;
+use App\Actions\CreateOrganizationAction;
+use App\Http\Requests\OrganizationRequest;
+use App\Models\Organization;
+use App\Services\GithubApi;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class OrganizationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $response = Company::with('team')->all();
+        $response = Organization::with('members')->all();
 
-        return $this->okResponse("Company retrieved successfully", $response);
+        return $this->okResponse("Organization retrieved successfully", $response);
     }
 
     /**
@@ -37,24 +38,24 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompanyRequest $request)
+    public function store(OrganizationRequest $request)
     {
         try {
-            $response = (new CreateCompanyAction())->execute($request);
+            $response = (new CreateOrganizationAction())->execute($request);
 
-            return $this->createdResponse("Company created successfully", $response);
+            return $this->createdResponse("Organization created successfully", $response);
         } catch (\Exception $e) {
-            return $this->errorResponse("unable to create company", $e->getMessage());
+            return $this->errorResponse("unable to create organization", $e->getMessage());
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Organization $organization)
     {
         //
     }
@@ -62,10 +63,10 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Organization $organization)
     {
         //
     }
@@ -74,10 +75,10 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Organization $organization)
     {
         //
     }
@@ -85,10 +86,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Organization $organization)
     {
         //
     }
