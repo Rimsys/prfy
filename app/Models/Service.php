@@ -28,5 +28,10 @@ class Service extends Model
     public const GITLAB_SERVICES = 'gitlab';
     public const BITBUCKET_SERVICES = 'bitbucket';
 
+<<<<<<< HEAD
+=======
+    protected $table = 'services';
+
+>>>>>>> dd1acc7 (fix lint issues)
     protected $guarded = [];
 }
