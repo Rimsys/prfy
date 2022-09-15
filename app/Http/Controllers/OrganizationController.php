@@ -57,7 +57,7 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        //
+        return $this->okResponse("Organization retrieved successfully", $organization);
     }
 
     /**
