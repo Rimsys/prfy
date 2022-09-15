@@ -28,5 +28,5 @@ Route::post('webhook', [GithubWebhookController::class, 'store']);
 
 Route::post('register/organization', [OrganizationController::class, 'store'])->name('register.store')->middleware('verify.services');
 Route::get('organization/{organization}', [OrganizationController::class, 'show']);
-Route::post('repositorydetails', [OrganizationRepositoryDetailsController::class, 'getOrganizationMembers'])->name('repositorydetails');
+Route::post('organization/repositorydetails', [OrganizationRepositoryDetailsController::class, 'getOrganizationMembers'])->name('repositorydetails');
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
