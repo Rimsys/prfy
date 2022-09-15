@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Service extends Model
 {
+    use HasFactory;
+
     public const GITHUB_SERVICES = 'github';
     public const GITLAB_SERVICES = 'gitlab';
     public const BITBUCKET_SERVICES = 'bitbucket';
-
-    use HasFactory;
 
     protected $guarded = [];
 }
