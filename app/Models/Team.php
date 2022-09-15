@@ -36,4 +36,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Team extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = 'teams';
+
+    protected $guarded = [];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

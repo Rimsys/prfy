@@ -19,6 +19,7 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->string('user_name');
             $table->string('email');
+            $table->string('avatar_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

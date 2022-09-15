@@ -30,4 +30,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Company extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $guarded = [];
+
+    public function team()
+    {
+        return $this->hasMany(Team::class);
+    }
 }
