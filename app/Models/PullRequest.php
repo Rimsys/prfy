@@ -32,10 +32,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|PullRequest withTrashed()
  * @method static \Illuminate\Database\Query\Builder|PullRequest withoutTrashed()
  * @mixin \Eloquent
+ * @property string $requested_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PullRequest whereRequestedAt($value)
  */
 class PullRequest extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function comments()
+    {
+        return $this->hasMany(PullRequestComment::class);
+    }
+
 }

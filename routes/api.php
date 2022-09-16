@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\GithubWebhookController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationRepositoryDetailsController;
+use App\Http\Controllers\PullRequestController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
@@ -32,35 +33,4 @@ Route::post('organization/repositorydetails', [OrganizationRepositoryDetailsCont
 Route::get('services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('webhook', [WebhookController::class, 'index']);
 Route::post('webhook', [WebhookController::class, 'store']);
-
-Route::get('testing', function () {
-    $response = Http::withHeaders(
-        [
-            'Accept' => 'application/vnd.github+json',
-            'Authorization' => 'Bearer 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'
-        ]
-    )->post(
-        'https://api.github.com/repos/acellware/onboard/hooks',
-        [
-            'name' => 'web',
-            'active' => true,
-            'events' => [
-                "pull_request",
-                "pull_request_review",
-                "pull_request_review_comment",
-            ],
-            'config' => [
-                'url' => "https://a9f1-102-89-41-214.eu.ngrok.io/webhook",
-                'content_type' => "form",
-                'insecure_ssl' => "0",
-            ]
-        ]
-    );
-
-    if ($response->failed()) {
-        // throw exception
-        return ['failed' => $response->json()];
-    }
-
-    return $response->json();
-});
+Route::get('reviews', [PullRequestController::class, 'index']);

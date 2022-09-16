@@ -16,10 +16,10 @@ class CreatePullRequestCommentsTable extends Migration
         Schema::create('pull_request_comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pull_request_id')->constrained('pull_requests');
-            $table->foreignId('requested_reviewer_id')->constrained('members');
-            $table->longText('comments');
+            $table->foreignId('reviewer_id')->constrained('members');
             $table->string('status');
             $table->dateTime('submitted_at');
+            $table->dateTime('edited_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

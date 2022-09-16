@@ -3,6 +3,9 @@
 namespace App\Jobs;
 
 use App\Models\WebhookLog;
+use App\Services\PullRequests\PRApproval;
+use App\Services\PullRequests\PRComment;
+use App\Services\PullRequests\PRReviewRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -31,10 +34,16 @@ class ProcessWebhook implements ShouldQueue
      * Execute the job.
      *
      * @param PRCreation $PRCreation
+     * @param PRComment $PRComment
+     * @param PRReviewRequest $PRReviewRequest
+     * @param PRApproval $PRApproval
      * @return void
      */
-    public function handle(PRCreation $PRCreation)
+    public function handle(PRCreation $PRCreation, PRComment $PRComment, PRReviewRequest $PRReviewRequest, PRApproval $PRApproval)
     {
         $PRCreation->process($this->webhookLog);
+        $PRComment->process($this->webhookLog);
+        $PRReviewRequest->process($this->webhookLog);
+        $PRApproval->process($this->webhookLog);
     }
 }

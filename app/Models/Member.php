@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utilities\Enums;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserName($value)
  * @mixin \Eloquent
+ * @property int $organization_id
+ * @property int $git_id
+ * @property string|null $avatar_url
+ * @property-read \App\Models\Organization $organization
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereAvatarUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereGitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereOrganizationId($value)
  */
 class Member extends Model
 {
@@ -45,4 +53,17 @@ class Member extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function openPrs()
+    {
+        return $this->hasMany(PullRequestReview::class, 'reviewer_id')
+            ->where('status', Enums::REVIEW_REQUESTED);
+    }
+
+    public function reviewedPrs()
+    {
+        return $this->hasMany(PullRequestReview::class, 'reviewer_id')
+            ->where('status', Enums::APPROVED);
+    }
+
 }

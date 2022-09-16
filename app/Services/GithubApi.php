@@ -58,6 +58,9 @@ class GithubApi extends Service
 
     public function createWebhook(string $accessToken, string $organization_name, string $repository_name)
     {
+        if(!config('app.webhook_url')) {
+            throw new \Exception('Webhook_URL is empty');
+        }
         $response = $this->post("repos/{$organization_name}/{$repository_name}/hooks", [
             'json' => [
                 'name' => 'web',

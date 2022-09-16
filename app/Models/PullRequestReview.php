@@ -34,10 +34,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|PullRequestReview withTrashed()
  * @method static \Illuminate\Database\Query\Builder|PullRequestReview withoutTrashed()
  * @mixin \Eloquent
+ * @property int $reviewer_id
+ * @method static \Illuminate\Database\Eloquent\Builder|PullRequestReview whereReviewerId($value)
  */
 class PullRequestReview extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function pr()
+    {
+        return $this->belongsTo(PullRequest::class);
+    }
 }

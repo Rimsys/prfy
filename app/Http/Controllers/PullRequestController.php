@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use App\Models\PullRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PullRequestController extends Controller
@@ -10,11 +12,17 @@ class PullRequestController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $members = Member::with(['openPrs', 'reviewedPrs'])->get();
+
+        foreach ($members as $member) {
+            $member['score'] = $member->reviewedPrs->count() * 2;
+        }
+
+        return $this->okResponse('successful', $members);
     }
 
     /**
