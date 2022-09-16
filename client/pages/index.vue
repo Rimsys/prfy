@@ -4,6 +4,7 @@
     <skill-get-skill />
     <experience-get-experience /> -->
     <service-get-service />
+    <accesstoken-add-access-token />
     <!-- <layout-footer /> -->
   </div>
 </template>

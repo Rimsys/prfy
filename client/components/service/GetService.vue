@@ -2,9 +2,7 @@
   <Transition name="fade" mode="out-in" appear>
     <div
       class="
-      mx-auto mt-8 p-8 max-w-2xl
-      border border-solid border-green-400 rounded-3xl shadow-2xl
-    "
+      mx-auto mt-8 p-8 max-w-2xl rounded-3xl shadow-2xl shadow"
     >
       <div class="row">
         <ul
