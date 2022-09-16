@@ -17,6 +17,14 @@ export interface MetApiResponse {
   }
   data: any
 }
+export interface Service {
+  id: number
+  name: string
+  image_url: string
+  is_available: boolean
+  created_at: Date
+  updated_at : Date
+}
 
 export interface User {
   name: string
@@ -27,3 +35,4 @@ export interface User {
 }
 
 export type Users = Array<User>
+export type Services = Array<Service>

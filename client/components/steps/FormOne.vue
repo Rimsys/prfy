@@ -1,0 +1,117 @@
+<template>
+  <Transition name="fade" mode="out-in" appear>
+    <div
+      class="
+      mx-auto mt-8 p-8 max-w-2xl
+      border border-solid border-green-400 rounded-3xl shadow-2xl
+    "
+    >
+      <h2 class="pb-6 text-green-400">User Information</h2>
+
+      <Form v-slot="{ meta }" :validation-schema="schema" class="text-left">
+        <!-- First Name -->
+        <div class="mt-4 mb-8">
+          <label class="font-bold" for="firstName">
+            * First Name
+          </label>
+
+          <Field
+            id="firstName"
+            v-model.trim="firstName"
+            class="my-4 pl-4 h-12 w-full bg-gray-600 text-white border-0"
+            name="firstName"
+            qa-ref="form-one-first-name"
+            type="text"
+            autofocus
+          />
+
+          <ErrorMessage
+            class="text-red-400"
+            name="firstName"
+            qa-ref="form-one-first-name-error"
+          />
+        </div>
+
+        <!-- Last Name -->
+        <div class="mt-4 mb-8">
+          <label class="font-bold" for="lastName">
+            * Last Name
+          </label>
+
+          <Field
+            id="lastName"
+            v-model.trim="lastName"
+            class="my-4 pl-4 h-12 w-full bg-gray-600 text-white border-0"
+            name="lastName"
+            qa-ref="form-one-last-name"
+            type="text"
+          />
+
+          <ErrorMessage
+            class="text-red-400"
+            name="lastName"
+            qa-ref="form-one-last-name-error"
+          />
+        </div>
+
+        <!-- Username -->
+        <div class="mt-4 mb-8">
+          <label class="font-bold" for="username">
+            * Username
+          </label>
+
+          <Field
+            id="username"
+            v-model.trim="username"
+            class="my-4 pl-4 h-12 w-full bg-gray-600 text-white border-0"
+            name="username"
+            qa-ref="form-one-username"
+            type="text"
+          />
+
+          <ErrorMessage
+            class="text-red-400"
+            name="username"
+            qa-ref="form-one-username-error"
+          />
+        </div>
+
+        <Navigation :current-step="2" :is-next-button-disabled="!meta.valid" />
+      </Form>
+    </div>
+  </Transition>
+</template>
+<script setup lang="ts">
+// import { Field, Form, ErrorMessage } from 'vee-validate'
+// import { object, string } from 'yup'
+// import { computed } from 'vue'
+// import Navigation from './Navigation.vue'
+// import { useUserStore } from '@/stores/user'
+// const userStore = useUserStore()
+// const firstName = computed({
+//   get: () => userStore.firstName,
+//   set: (value: string) => userStore.updateFirstName(value),
+// })
+// const lastName = computed({
+//   get: () => userStore.lastName,
+//   set: (value: string) => userStore.updateLastName(value),
+// })
+// const username = computed({
+//   get: () => userStore.username,
+//   set: (value: string) => userStore.updateUsername(value),
+// })
+// const schema = object({
+//   firstName: string()
+//     .required()
+//     .trim()
+//     .label('First name'),
+//   lastName: string()
+//     .required()
+//     .trim()
+//     .label('Last name'),
+//   username: string()
+//     .required()
+//     .trim()
+//     .label('Username'),
+// })
+</script>

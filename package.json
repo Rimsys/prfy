@@ -45,6 +45,7 @@
     "nuxt-typed-vuex": "^0.2.0",
     "postcss": "^8.3.5",
     "ts-jest": "^27.0.3",
+    "vee-validate": "^4.5.8",
     "vue-jest": "^3.0.4"
   }
 }

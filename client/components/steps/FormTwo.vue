@@ -1,0 +1,91 @@
+<template>
+  <Transition name="fade" mode="out-in" appear>
+    <div
+      class="
+      mx-auto mt-8 p-8 max-w-2xl
+      border border-solid border-green-400 rounded-3xl shadow-2xl
+    "
+    >
+      <h2 class="pb-6 text-green-400">Last Step</h2>
+
+      <Form v-slot="{ meta }" :validation-schema="schema" class="text-left">
+        <!-- Email -->
+        <div class="mt-4 mb-8">
+          <label class="font-bold" for="email">
+            * Email
+          </label>
+
+          <Field
+            id="email"
+            v-model="email"
+            class="my-4 pl-4 h-12 w-full bg-gray-600 text-white border-0"
+            name="email"
+            qa-ref="form-two-email"
+            type="email"
+            autofocus
+          />
+
+          <ErrorMessage
+            class="text-red-400"
+            name="email"
+            qa-ref="form-two-email-error"
+          />
+        </div>
+
+        <!-- Agree with terms and services -->
+        <div class="mt-4 mb-8">
+          <div class="flex justify-between">
+            <label class="font-bold" for="hasAgreeToTerms">
+              * I agree with terms and services
+            </label>
+
+            <Field
+              id="hasAgreeToTerms"
+              v-model="hasAgreeToTerms"
+              :value="true"
+              class="ml-4 h-7 w-7"
+              name="hasAgreeToTerms"
+              qa-ref="form-two-agree-to-terms"
+              type="checkbox"
+            />
+          </div>
+
+          <ErrorMessage
+            as="p"
+            class="mt-4 text-red-400"
+            name="hasAgreeToTerms"
+            qa-ref="form-two-agree-to-terms-error"
+          />
+        </div>
+
+        <Navigation
+          :current-step="3"
+          :is-next-button-disabled="!meta.valid || !hasAgreeToTerms"
+        />
+      </Form>
+    </div>
+  </Transition>
+</template>
+<script setup lang="ts">
+// import { Field, Form, ErrorMessage } from 'vee-validate'
+// import { bool, object, string } from 'yup'
+// import { computed } from 'vue'
+// import Navigation from './Navigation.vue'
+// import { useUserStore } from '@/stores/user'
+// const userStore = useUserStore()
+// const email = computed({
+//   get: () => userStore.email,
+//   set: (value: string) => userStore.updateEmail(value),
+// })
+// const hasAgreeToTerms = computed({
+//   get: () => userStore.hasAgreeToTerms,
+//   set: (value: boolean) => userStore.updateHasAgreeToTerms(value),
+// })
+// const schema = object({
+//   email: string()
+//     .required()
+//     .email('Please provide a valid email')
+//     .label('Email'),
+//   hasAgreeToTerms: bool().required('You must agree with terms and services'),
+// })
+</script>
