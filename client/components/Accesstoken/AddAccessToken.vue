@@ -1,9 +1,9 @@
 <template>
   <div class="mx-auto">
-    <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-4 w-full max-w-xl bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <form class="space-y-6" action="#">
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Connect to Github</h5>
-        <ol class="list-decimal">
+        <ol class="list-decimal pl-4 text-sm">
           <li>Create <span class="text-blue-600">Personal Access Token</span> on github</li>
           <li>Make sure the following permissions are checked</li>
         </ol>
