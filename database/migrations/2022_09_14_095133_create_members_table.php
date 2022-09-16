@@ -23,11 +23,11 @@ class CreateMembersTable extends Migration
         Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
+            $table->integer('git_id');
             $table->string('name')->nullable();
             $table->string('user_name');
             $table->string('email')->nullable();
             $table->string('avatar_url')->nullable();
-            $table->integer('git_id');
             $table->timestamps();
             $table->softDeletes();
         });
