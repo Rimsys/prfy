@@ -20,7 +20,7 @@ class CreateOrganizationsTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->schemaTable, function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedInteger('service_id');

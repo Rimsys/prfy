@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\WebhookLog
@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|WebhookLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WebhookLog whereWebhookId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WebhookLog whereDeletedAt($value)
+ * @property string $reference
+ * @method static \Illuminate\Database\Eloquent\Builder|WebhookLog whereReference($value)
  */
 class WebhookLog extends Model
 {

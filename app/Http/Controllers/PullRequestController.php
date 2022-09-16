@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\PullRequest;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class PullRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $team)
+    public function show(PullRequest $pullRequest)
     {
         //
     }
@@ -52,10 +52,10 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $team)
+    public function edit(PullRequest $pullRequest)
     {
         //
     }
@@ -64,10 +64,10 @@ class MemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $team)
+    public function update(Request $request, PullRequest $pullRequest)
     {
         //
     }
@@ -75,10 +75,10 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $team)
+    public function destroy(PullRequest $pullRequest)
     {
         //
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\PullRequestComment;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class PullRequestCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequestComment  $pullRequestComment
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $team)
+    public function show(PullRequestComment $pullRequestComment)
     {
         //
     }
@@ -52,10 +52,10 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequestComment  $pullRequestComment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $team)
+    public function edit(PullRequestComment $pullRequestComment)
     {
         //
     }
@@ -64,10 +64,10 @@ class MemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequestComment  $pullRequestComment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $team)
+    public function update(Request $request, PullRequestComment $pullRequestComment)
     {
         //
     }
@@ -75,10 +75,10 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Member  $team
+     * @param  \App\Models\PullRequestComment  $pullRequestComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $team)
+    public function destroy(PullRequestComment $pullRequestComment)
     {
         //
     }

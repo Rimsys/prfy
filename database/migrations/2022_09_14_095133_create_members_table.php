@@ -20,10 +20,11 @@ class CreateMembersTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->schemaTable, function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
-            $table->string('name')->nullable();
+            $table->integer('git_id');
+            $table->string('name');
             $table->string('user_name');
             $table->string('email')->nullable();
             $table->string('avatar_url')->nullable();
