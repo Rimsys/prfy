@@ -48,7 +48,6 @@ class PRComment implements PRInterface
      */
     private function getPRId(Array $pullRequest)
     {
-        logger($pullRequest);
         return PullRequest::query()->whereGitId($pullRequest['id'])->value('id');
     }
 

@@ -32,6 +32,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserName($value)
  * @mixin \Eloquent
+ * @property int $organization_id
+ * @property int $git_id
+ * @property string|null $avatar_url
+ * @property-read \App\Models\Organization $organization
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereAvatarUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereGitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Member whereOrganizationId($value)
  */
 class Member extends Model
 {

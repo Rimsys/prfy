@@ -35,8 +35,9 @@ class PRApproval implements PRInterface
         PullRequestReview::query()
             ->wherePullRequestId($this->getPRId($payload['pull_request']))
             ->whereReviewerId($this->getReviewerId($payload['review']['user']))
-            ->whereNotNull('approved_at')
-            ->update(['approved_at' => now()]);
+            ->whereStatus(Enums::REVIEW_REQUESTED)
+            ->whereNull('approved_at')
+            ->update(['approved_at' => now(), 'status' => Enums::APPROVED]);
 
         $webhookLog->update(['status' => Enums::SUCCESS]);
     }

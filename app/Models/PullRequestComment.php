@@ -34,6 +34,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|PullRequestComment withTrashed()
  * @method static \Illuminate\Database\Query\Builder|PullRequestComment withoutTrashed()
  * @mixin \Eloquent
+ * @property int $reviewer_id
+ * @property string|null $edited_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PullRequestComment whereEditedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PullRequestComment whereReviewerId($value)
  */
 class PullRequestComment extends Model
 {

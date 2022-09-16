@@ -13,13 +13,12 @@ class WebhookController extends Controller
 {
 
     public function index() {
-        $payload = WebhookLog::query()->find(10)->data->toArray();
+        $payload = WebhookLog::query()->find(1)->data->toArray();
         return json_decode(json_encode($payload), true);
     }
 
     public function store(Request $request): JsonResponse
     {
-//        logger($request);
         $data = json_decode($request['payload'], true);
         $webhookLog = WebhookLog::query()->create([
             'vendor' => 'github',

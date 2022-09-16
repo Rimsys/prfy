@@ -14,4 +14,5 @@ class Enums
     public const APPROVED = 'approved';
     public const COMMENTED = 'commented';
     public const REVIEW_REQUESTED = 'review_requested';
+    public const REVIEW_REQUESTED_REMOVED = 'review_request_removed';
 }
