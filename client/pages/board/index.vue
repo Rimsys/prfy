@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" v-for="(review, i) in reviews" :key="i">
+        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" v-for="(review, i) in reviews" :key="i" v-if="reviews.length">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             ...
           </th>
@@ -39,6 +39,11 @@
           </td>
           <td class="py-4 px-6">
             {{ review.score }}
+          </td>
+        </tr>
+        <tr v-else>
+          <td class="py-4 px-6 text-center">
+            ...
           </td>
         </tr>
       </tbody>
