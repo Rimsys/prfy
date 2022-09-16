@@ -17,7 +17,7 @@ class CreatePullRequestReviewsTable extends Migration
         Schema::create('pull_request_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pull_request_id')->constrained('pull_requests');
-            $table->foreignId('requested_reviewer_id')->constrained('members');
+            $table->foreignId('reviewer_id')->constrained('members');
             $table->string('status')->default(Enums::REVIEW_REQUESTED);
             $table->dateTime('requested_at');
             $table->dateTime('approved_at')->nullable();

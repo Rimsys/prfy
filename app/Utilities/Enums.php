@@ -10,5 +10,8 @@ class Enums
     public const CLOSED = 'closed';
     public const SUCCESS = 'success';
     public const SUBMITTED = 'submitted';
+    public const EDITED = 'edited';
+    public const APPROVED = 'approved';
+    public const COMMENTED = 'commented';
     public const REVIEW_REQUESTED = 'review_requested';
 }
