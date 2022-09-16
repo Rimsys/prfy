@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utilities\Enums;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,4 +53,17 @@ class Member extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function openPrs()
+    {
+        return $this->hasMany(PullRequestReview::class, 'reviewer_id')
+            ->where('status', Enums::REVIEW_REQUESTED);
+    }
+
+    public function reviewedPrs()
+    {
+        return $this->hasMany(PullRequestReview::class, 'reviewer_id')
+            ->where('status', Enums::APPROVED);
+    }
+
 }

@@ -40,4 +40,10 @@ class PullRequest extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function comments()
+    {
+        return $this->hasMany(PullRequestComment::class);
+    }
+
 }

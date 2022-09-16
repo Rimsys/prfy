@@ -42,4 +42,9 @@ class PullRequestReview extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function pr()
+    {
+        return $this->belongsTo(PullRequest::class);
+    }
 }
