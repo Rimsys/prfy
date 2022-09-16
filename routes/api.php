@@ -35,12 +35,9 @@ Route::get('testing', function () {
             'name' => 'web',
             'active' => true,
             'events' => [
-                "discussion",
                 "pull_request",
                 "pull_request_review",
                 "pull_request_review_comment",
-                "repository",
-                "status",
             ],
             'config' => [
                 'url' => "https://a9f1-102-89-41-214.eu.ngrok.io/webhook",

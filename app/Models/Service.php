@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\service
+ *
  * @property int $id
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -19,6 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereUpdatedAt($value)
+ * @property string|null $image_url
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereImageUrl($value)
+ * @mixin \Eloquent
  */
 class Service extends Model
 {

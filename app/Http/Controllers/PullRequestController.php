@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
+use App\Models\PullRequest;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class PullRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organization  $company
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(Organization $company)
+    public function show(PullRequest $pullRequest)
     {
         //
     }
@@ -52,10 +52,10 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organization  $company
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organization $company)
+    public function edit(PullRequest $pullRequest)
     {
         //
     }
@@ -64,10 +64,10 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Organization  $company
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organization $company)
+    public function update(Request $request, PullRequest $pullRequest)
     {
         //
     }
@@ -75,10 +75,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Organization  $company
+     * @param  \App\Models\PullRequest  $pullRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organization $company)
+    public function destroy(PullRequest $pullRequest)
     {
         //
     }
