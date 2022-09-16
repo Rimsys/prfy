@@ -7,13 +7,20 @@ use Illuminate\Support\Facades\Schema;
 class CreateServicesTable extends Migration
 {
     /**
+     * The table name for this migration
+     *
+     * @var string $schemaTable
+     */
+    protected $schemaTable = 'services';
+
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('image_url')->nullable();
@@ -29,6 +36,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists($this->schemaTable);
     }
 }

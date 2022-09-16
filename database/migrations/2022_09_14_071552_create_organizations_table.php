@@ -20,12 +20,12 @@ class CreateOrganizationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create($this->schemaTable, function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedInteger('service_id');
             $table->string('access_token')->nullable();
-            $table->string('git_id')->nullable();
+            $table->integer('git_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

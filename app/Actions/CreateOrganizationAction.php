@@ -11,7 +11,9 @@ class CreateOrganizationAction
 {
     public function execute($request)
     {
-        $companyMembers = $this->getCompanyMembers($request);
+        $githubApi = new GithubApi;
+
+        $organizationMembers = $this->getCompanyMembers($request);
 
         $createOrganization = Organization::create([
             'name' => $request->organization_name,
@@ -20,29 +22,24 @@ class CreateOrganizationAction
             'git_id' => $request->organization_id,
         ]);
 
-        foreach ($companyMembers as $companyMember) {
+        foreach ($organizationMembers as $member) {
             $createOrganization->members()->create([
-                'user_name' => $companyMember['login'],
-                'avatar_url' => $companyMember['avatar_url'],
-                'git_id' => $companyMember['id']
+                'user_name' => $member['login'],
+                'avatar_url' => $member['avatar_url'],
+                'git_id' => $member['id']
             ]);
         }
 
-        $response = Http::withHeaders(
-            [
-                'Accept' => 'application/vnd.github+json',
-                'Authorization' => "Bearer $request->access_token"
-            ]
-        )->get(
-            "https://api.github.com/repos/$request->organization_name/repos"
-        );
+        //move process to a job when refactoring
+        $organizationRepositories = $githubApi->getOrganizationRepositories($request->access_token, $request->organization_name);
 
-        $repos = collect($response->json()->toArray());
+        if ($organizationRepositories['status'] === 200 && !empty($organizationRepositories['data'])) {
+            collect($organizationRepositories['data'])->each(function ($org) use ($githubApi, $request) {
+                $organization = $githubApi->createWebhook($request->access_token, $request->organization_name, $org['name']);
+            });
+        }
 
-        $repos->each(function ($repo) use ($request) {
-            $this->createWebhook($request->access_token, $request->organization_name, $repo['name']);
-        });
-
+        return true;
     }
 
     private function getCompanyMembers($request)
@@ -57,45 +54,5 @@ class CreateOrganizationAction
             \abort($response['status'], $errorMessage ? $errorMessage : 'Bad credentials.');
         }
         return $response['data'];
-    }
-
-    /**
-     * @param string $accessToken
-     * @param string $organization_name
-     * @param string $repositoryName
-     * @return array|mixed
-     * @throws \Exception
-     */
-    private function createWebhook(string $accessToken, string $organization_name, string $repositoryName) {
-        $response = Http::withHeaders(
-            [
-                'Accept' => 'application/vnd.github+json',
-                'Authorization' => "Bearer $accessToken"
-            ]
-        )->post(
-            "https://api.github.com/repos/$organization_name/$repositoryName/hooks",
-            [
-                'name' => 'web',
-                'active' => true,
-                'events' => [
-                    "pull_request",
-                    "pull_request_review",
-                    "pull_request_review_comment",
-                ],
-                'config' => [
-                    'url' => config('app.webhook_url'),
-                    'content_type' => "form",
-                    'insecure_ssl' => "0",
-                ]
-            ]
-        );
-
-        if ($response->failed()) {
-            // throw exception
-            $message = 'Webhook could not be created';
-            throw new \Exception($message);
-        }
-
-        return $response->json();
     }
 }
