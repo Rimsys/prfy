@@ -25,8 +25,6 @@ Route::get('/', [Controller::class, 'routes'])
     ->withoutMiddleware('api');
 Route::get('/example', [Controller::class, 'example'])->name('example route');
 Route::get('/error', [Controller::class, 'error'])->name('error route');
-Route::get('webhook', [GithubWebhookController::class, 'index']);
-Route::post('webhook', [GithubWebhookController::class, 'store']);
 
 Route::post('register/organization', [OrganizationController::class, 'store'])->name('register.store')->middleware('verify.services');
 Route::get('organization/{organization}', [OrganizationController::class, 'show']);

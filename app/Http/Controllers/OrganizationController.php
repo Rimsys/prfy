@@ -7,15 +7,16 @@ use App\Http\Requests\OrganizationRequest;
 use App\Models\Organization;
 use App\Services\GithubApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OrganizationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $response = Organization::with('members')->all();
 
@@ -36,7 +37,7 @@ class OrganizationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(OrganizationRequest $request)
     {
@@ -45,6 +46,7 @@ class OrganizationController extends Controller
 
             return $this->createdResponse("Organization created successfully", $response);
         } catch (\Exception $e) {
+            Log::error('CREATING_ORG: ' . $e->getMessage() );
             return $this->errorResponse("unable to create organization", $e->getMessage());
         }
     }
@@ -53,7 +55,7 @@ class OrganizationController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Organization  $organization
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Organization $organization)
     {

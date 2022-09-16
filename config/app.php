@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'webhook_url' => env('WEBHOOK_URL', 'http://localhost:3000/webhook'),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
