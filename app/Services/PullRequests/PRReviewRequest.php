@@ -27,7 +27,7 @@ class PRReviewRequest implements PRInterface
         }
 
         $pr = $this->getPR($payload['pull_request']);
-        if (!$pr || $pr->status === Enums::CLOSED || $payload['pull_request']['draft']) {
+        if (!$pr || $pr->status === Enums::CLOSED || $payload['pull_request']['draft'] || $payload['pull_request']['merged']) {
             return;
         }
 

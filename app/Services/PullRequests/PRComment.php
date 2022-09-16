@@ -22,7 +22,6 @@ class PRComment implements PRInterface
     public function process(WebhookLog $webhookLog): void
     {
         $payload = $webhookLog->data->toArray();
-//        logger($payload);
         $action = $payload['action'];
         $submitted = $action === Enums::SUBMITTED && array_key_exists('review', $payload);
         $edited = $action === Enums::EDITED && !array_key_exists('review', $payload);
@@ -31,7 +30,6 @@ class PRComment implements PRInterface
             return;
         }
 
-//        logger($action);
         PullRequestComment::query()->create([
             'pull_request_id' => $this->getPRId($payload['pull_request']),
             'reviewer_id' => $this->getReviewerId($payload['sender']),

@@ -8,6 +8,7 @@ class Enums
     public const REOPENED = 'reopened';
     public const CLOS = 'close';
     public const CLOSED = 'closed';
+    public const MERGED = 'merged';
     public const SUCCESS = 'success';
     public const SUBMITTED = 'submitted';
     public const EDITED = 'edited';

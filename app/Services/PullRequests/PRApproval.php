@@ -22,12 +22,20 @@ class PRApproval implements PRInterface
     public function process(WebhookLog $webhookLog): void
     {
         $payload = $webhookLog->data->toArray();
+        if (!array_key_exists('review', $payload)) {
+            return;
+        }
         $action = $payload['action'];
         $reviewState = $payload['review']['state'];
         $prState = $payload['pull_request']['state'];
         $draftState = $payload['pull_request']['draft'];
+        $mergedState = $payload['pull_request']['merged_at'];
 
-        $condition = $action === Enums::SUBMITTED && $prState === Enums::OPEN && $reviewState === Enums::APPROVED && !$draftState;
+        $condition = $action === Enums::SUBMITTED &&
+            $prState === Enums::OPEN &&
+            $reviewState === Enums::APPROVED &&
+            !$draftState && !$mergedState;
+
         if (!$condition) {
             return;
         }

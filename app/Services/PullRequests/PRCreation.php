@@ -31,6 +31,7 @@ class PRCreation implements PRInterface
             return;
         }
 
+
         if ($action === Enums::OPENED) {
             PullRequest::query()->create([
                 'git_id' => $payload['pull_request']['id'],
@@ -41,6 +42,10 @@ class PRCreation implements PRInterface
             ]);
         } else {
             PullRequest::query()->whereGitId($payload['pull_request']['id'])->update(['status' => $action]);
+        }
+
+        if ($payload['pull_request']['merged']) {
+            PullRequest::query()->whereGitId($payload['pull_request']['id'])->update(['status' => Enums::MERGED]);
         }
 
         $webhookLog->update(['status' => Enums::SUCCESS]);
