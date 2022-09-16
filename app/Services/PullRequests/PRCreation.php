@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\PullRequests;
 
 use Carbon\Carbon;
@@ -9,6 +10,7 @@ use App\Models\PullRequest;
 use App\Contracts\PRInterface;
 
 /**
+ *
  * Class PRCreation
  * @package App\Services\PullRequests
  */
@@ -29,7 +31,7 @@ class PRCreation implements PRInterface
             return;
         }
 
-        if($action === Enums::OPENED) {
+        if ($action === Enums::OPENED) {
             PullRequest::query()->create([
                 'git_id' => $payload['pull_request']['id'],
                 'sender_id' => $this->getSenderId($payload['sender']),
@@ -42,10 +44,9 @@ class PRCreation implements PRInterface
         }
 
         $webhookLog->update(['status' => Enums::SUCCESS]);
-
     }
 
-    private function getSenderId(Array $sender)
+    private function getSenderId(array $sender)
     {
         return Member::query()->whereGitId($sender['id'])->value('id');
     }
