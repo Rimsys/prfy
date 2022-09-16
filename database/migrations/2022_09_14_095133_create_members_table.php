@@ -27,6 +27,7 @@ class CreateMembersTable extends Migration
             $table->string('user_name');
             $table->string('email')->nullable();
             $table->string('avatar_url')->nullable();
+            $table->string('git_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

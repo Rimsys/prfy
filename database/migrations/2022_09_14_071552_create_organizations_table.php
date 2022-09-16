@@ -25,6 +25,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('service_id');
             $table->string('access_token')->nullable();
+            $table->string('git_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

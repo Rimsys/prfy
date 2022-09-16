@@ -27,6 +27,7 @@ class OrganizationRequest extends FormRequest
             'service_id' => 'integer|required',
             'access_token' => 'required',
             'organization_name' => 'required',
+            'organization_id' => 'required',
         ];
     }
 }
