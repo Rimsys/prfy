@@ -18,12 +18,6 @@ class PullRequestController extends Controller
     {
         $members = Member::with(['openPrs', 'reviewedPrs'])->get();
 
-        logger($members);
-
-//        $members->each(function ($member) {
-//            $member['score'] = $member->reviewedPrs->count() * 2;
-//        });
-
         foreach ($members as $member) {
             $member['score'] = $member->reviewedPrs->count() * 2;
         }
