@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use App\Models\Organization;
-use App\Models\Service;
 use App\Services\GithubApi;
 
 class CreateOrganizationAction
@@ -16,12 +15,14 @@ class CreateOrganizationAction
             'name' => $request->organization_name,
             'service_id' => $request->service_id,
             'access_token' => $request->access_token,
+            'git_id' => $request->organization_id,
         ]);
 
         foreach ($companyMembers as $companyMember) {
             $createOrganization->members()->create([
                 'user_name' => $companyMember['login'],
                 'avatar_url' => $companyMember['avatar_url'],
+                'git_id' => $companyMember['id']
             ]);
         }
     }
