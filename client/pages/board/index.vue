@@ -26,7 +26,7 @@
             ...
           </th>
           <td scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-            <img class="w-10 h-10 rounded-full" src="http://i.pravatar.cc/150?u=stuart.rodriguez@example.org" alt="avatar">
+            <img class="w-10 h-10 rounded-full" :src="review.avatar_url" alt="avatar">
             <div class="pl-3">
               <div class="text-base font-semibold">{{ review.name }}</div>
             </div>
